@@ -117,3 +117,37 @@ public:
         return ( vec[index-1] <= vec[index] ) && ( vec[index+1] <= vec[index] );
     }
 };
+
+
+
+/**
+ * Here is a much more simpler version, the principle is simillar but the code
+ * is forthright.
+ */
+ class Solution {
+public:
+    int maxProfit(vector<int> &prices) {
+        /**
+         * Only can sell it after buying.
+         * 
+         *  This solution will use O(1) space and O(n) time in all.
+         */
+        
+        int dates = prices.size();
+        if( dates < 2 )
+            return 0;
+        
+        int minIndex = 0;	// the min prices's index in prices
+        int maxDiff = 0;	// the max profit currently.
+        for(int i=1; i<dates ; i++){
+            if( prices[i] < prices[minIndex] )
+                minIndex = i;
+            
+            int diff = prices[i] - prices[minIndex];
+            if( diff > maxDiff )
+                maxDiff = diff;
+        }
+        
+        return maxDiff;
+    }
+ };
