@@ -137,7 +137,7 @@ public:
         if( dates < 2 )
             return 0;
         
-        int minIndex = 0;	// the min prices's index in prices
+        int minIndex = 0;	// the min price's index in prices
         int maxDiff = 0;	// the max profit currently.
         for(int i=1; i<dates ; i++){
             if( prices[i] < prices[minIndex] )
