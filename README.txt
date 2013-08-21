@@ -1,5 +1,6 @@
-The file name's patten is question_xxx.cpp, and xxx is the index of questions at leetcode.com.
+The file name's patten is xxx_questionTitle.cpp which xxx is the index of
+question on leetcode.com.
 
 For example, 
-question_111.cpp is the code of following link:
+111_MinimumDepthOfBinaryTree.cpp is the code of following link:
 http://leetcode.com/onlinejudge#question_111
