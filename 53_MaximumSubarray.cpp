@@ -11,7 +11,6 @@ class Solution {
 public:
     int maxSubArray(int A[], int n) {
         int maxSum = INT_MIN;
-        //int minIndex = 0;
         int lastMax = 0;
         for( int i = 0; i < n; i++ ){
             int curMax = max(A[i], A[i] + lastMax);
