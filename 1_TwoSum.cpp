@@ -42,3 +42,78 @@ public:
         return ret;
     }
 };
+
+
+/** 
+ * Optimize solution, using quick sort and then can find the pair in O(n) time,
+ * but the all time is O(n*logn) due to quick sort.
+ */
+class Solution {
+public:
+    vector<int> twoSum(vector<int> &numbers, int target) {
+        vector<int> ret;
+        if( numbers.size() < 2 )
+            return ret;
+        
+        vector<int> copied(numbers);
+        
+        sort(copied, 0, copied.size()-1);
+        int p1 = 0;
+        int p2 = copied.size()-1;
+        bool found = false;
+        while( p1 < p2 ){
+            int sum  = copied[p1] + copied[p2];
+            if( sum == target ){
+                found = true;
+                break;
+            }
+            else if( sum < target )
+                p1++;
+            else
+                p2--;
+        }
+        
+        if( found ){
+            for( int i = 0; i < numbers.size(); i++ ){
+                if( numbers[i] == copied[p1] || numbers[i] == copied[p2] )
+                    ret.push_back(i+1);
+                else if( ret.size()==2 )
+                    break;
+            }
+            
+            if( ret[0] > ret[1] )
+                swap(ret, 0, 1);
+        }
+        
+        return ret;
+    }
+    
+    void sort(vector<int> &numbers, int lp, int rp){
+        if( lp < 0 || rp >= numbers.size() || lp >= rp )
+            return;
+        
+        int i = lp-1;
+        int j = lp;
+        while( j < rp ){
+            if( numbers[j] >= numbers[rp] )
+                j++;
+            else{
+                swap(numbers, i+1, j);
+                i++;
+                j++;
+            }
+        }
+        
+        swap(numbers, i+1, rp);
+        sort(numbers, lp, i);
+        sort(numbers, i+2, rp);
+    }
+    
+    inline void swap(vector<int> &numbers, int p1, int p2){
+        if( p1 == p2 )
+            return;
+        int tmp = numbers[p1];
+        numbers[p1] = numbers[p2];
+        numbers[p2] = tmp;
+    }
+};
